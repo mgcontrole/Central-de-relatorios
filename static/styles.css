@@ -1,3 +1,24 @@
+:root {
+  --bg: #1a1a1a;
+  --surface: #2c2c2c;
+  --text: #ffffff;
+  --text-sub: #aaaaaa;
+  --border: #444444;
+  --accent: #c0392b;
+  --shadow: rgba(0,0,0,0.3);
+  --shadow-hover: rgba(192,57,43,0.3);
+}
+
+body.light {
+  --bg: #f4f4f4;
+  --surface: #ffffff;
+  --text: #2c2c2c;
+  --text-sub: #888888;
+  --border: #e0e0e0;
+  --shadow: rgba(0,0,0,0.07);
+  --shadow-hover: rgba(192,57,43,0.18);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,12 +27,14 @@
 
 body {
   min-height: 100vh;
-  background-color: #f4f4f4;
+  background-color: var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 header {
@@ -19,9 +42,21 @@ header {
   text-align: center;
 }
 
+.logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.logo-img {
+  height: 120px;
+  width: auto;
+}
+
 header h1 {
   font-size: 2.2rem;
-  color: #c0392b;
+  color: var(--accent);
   letter-spacing: 1px;
   font-weight: 700;
 }
@@ -29,7 +64,7 @@ header h1 {
 header .divider {
   width: 60px;
   height: 3px;
-  background-color: #c0392b;
+  background-color: var(--accent);
   margin: 10px auto 0;
   border-radius: 2px;
 }
@@ -42,14 +77,14 @@ header .divider {
 }
 
 .card {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 10px;
   width: 240px;
   padding: 36px 24px;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 10px var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, border-color 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -61,7 +96,7 @@ header .divider {
   left: 0;
   right: 0;
   height: 4px;
-  background-color: #c0392b;
+  background-color: var(--accent);
   border-radius: 10px 10px 0 0;
 }
 
@@ -72,8 +107,8 @@ header .divider {
 
 .card.active:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.18);
-  border-color: #c0392b;
+  box-shadow: 0 6px 20px var(--shadow-hover);
+  border-color: var(--accent);
 }
 
 .card.disabled {
@@ -84,11 +119,34 @@ header .divider {
 .card h2 {
   font-size: 1rem;
   font-weight: 600;
-  color: #2c2c2c;
+  color: var(--text);
   margin-bottom: 10px;
 }
 
 .card p {
   font-size: 0.82rem;
-  color: #888;
+  color: var(--text-sub);
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  z-index: 9000;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px var(--shadow);
+  white-space: nowrap;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+#theme-toggle:hover {
+  border-color: var(--accent);
 }
